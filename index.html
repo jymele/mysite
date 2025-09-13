@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Joel Ymele Leki - Senior Full Stack Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Chosen Palette: Calm Neutrals -->
+    <!-- Application Structure Plan: A thematic, single-page scrolling application with a fixed navigation header. The structure flows from a high-level introduction (Hero/Summary) to an interactive skills deep-dive (Skills Dashboard), followed by a chronological narrative of growth (Career Timeline), and finally concrete evidence of work (Project Spotlight). This structure was chosen to guide a recruiter from "who you are" to "what you can do" and "what you have done" in an intuitive, engaging manner, prioritizing scannability with options to drill down into details via modals. -->
+    <!-- Visualization & Content Choices: 
+        - Summary: Goal: Inform. Method: Formatted Text. Justification: Quick, clear introduction.
+        - Skills: Goal: Compare/Organize. Method: Interactive Bar Chart (Chart.js) filtering a list. Interaction: Click a chart category to filter the skill list. Justification: Transforms a static list into an explorable dashboard, allowing users to focus on specific skill sets.
+        - Experience: Goal: Show Change/Inform. Method: Vertical Timeline. Interaction: Click an entry to open a modal with details. Justification: More visually engaging than a list; modals prevent information overload.
+        - Projects: Goal: Demonstrate. Method: Cards. Interaction: Click a card to open a modal with details. Justification: Standard, effective UI for portfolio items.
+        - Library/Method: Chart.js for canvas-based charting and Vanilla JS for all interactions and state management. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f4f4f5; /* Zinc 100 */
+        color: #18181b; /* Zinc 900 */
+      }
+      .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 250px;
+        max-height: 300px;
+      }
+      @media (min-width: 768px) {
+        .chart-container {
+          height: 300px;
+          max-height: 350px;
+        }
+      }
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -30px;
+        top: 5px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #3b82f6; /* Blue 500 */
+        border: 4px solid #f4f4f5; /* Zinc 100 */
+      }
+      .timeline-path {
+        position: absolute;
+        left: -21px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background-color: #d4d4d8; /* Zinc 300 */
+      }
+      .modal-backdrop {
+        transition: opacity 0.3s ease-in-out;
+      }
+      .modal-content {
+        transition: transform 0.3s ease-in-out;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+      <div class="container mx-auto px-6 py-3">
+        <div class="flex justify-between items-center">
+          <div class="text-xl font-bold text-zinc-800">Joel Ymele Leki</div>
+          <div class="hidden md:flex space-x-6">
+            <a
+              href="#summary"
+              class="text-zinc-600 hover:text-blue-500 transition"
+              >Summary</a
+            >
+            <a
+              href="#skills"
+              class="text-zinc-600 hover:text-blue-500 transition"
+              >Skills</a
+            >
+            <a
+              href="#experience"
+              class="text-zinc-600 hover:text-blue-500 transition"
+              >Experience</a
+            >
+            <a
+              href="#projects"
+              class="text-zinc-600 hover:text-blue-500 transition"
+              >Projects</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section id="hero" class="py-20 md:py-32">
+        <div class="container mx-auto px-6 text-center">
+          <h1
+            class="text-4xl md:text-6xl font-extrabold text-zinc-900 leading-tight"
+          >
+            Senior Full Stack Engineer
+          </h1>
+          <p class="mt-4 text-lg md:text-xl text-zinc-600 max-w-3xl mx-auto">
+            Specializing in React & Next.js to build high-performance,
+            user-centric web applications.
+          </p>
+          <div class="mt-8 flex justify-center items-center space-x-4">
+            <a
+              href="mailto:joel.ymele@gmail.com"
+              class="inline-block bg-blue-500 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition"
+              >Contact Me</a
+            >
+            <div class="flex space-x-4">
+              <span class="text-zinc-500">647-779-6002</span>
+              <span class="text-zinc-400">|</span>
+              <span class="text-zinc-500">Pickering, ON</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="summary" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-zinc-800">About Me</h2>
+            <p class="mt-2 text-zinc-500">
+              A brief introduction to my professional journey.
+            </p>
+          </div>
+          <p
+            class="text-lg text-zinc-700 max-w-4xl mx-auto leading-relaxed text-center"
+          >
+            I am a results-driven Senior Full Stack Engineer with over a decade
+            of experience translating complex business needs into
+            high-performance web applications. I specialize in building and
+            optimizing user-centric solutions with React.js and Node.js, and
+            have a proven track record of collaborating with marketing teams to
+            implement analytics and drive measurable growth. My passion lies in
+            taking full ownership of the development lifecycle to deliver
+            robust, scalable, and maintainable code.
+          </p>
+        </div>
+      </section>
+
+      <section id="skills" class="py-16">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-zinc-800">
+              Interactive Skills Showcase
+            </h2>
+            <p class="mt-2 text-zinc-500">
+              Click on a category in the chart to filter the skills list below.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="chart-container">
+              <canvas id="skillsChart"></canvas>
+            </div>
+            <div class="mt-8">
+              <div class="flex justify-center mb-4">
+                <button
+                  id="showAllSkillsBtn"
+                  class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-600 transition"
+                >
+                  Show All Skills
+                </button>
+              </div>
+              <div
+                id="skillsList"
+                class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 text-center"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-zinc-800">Career Journey</h2>
+            <p class="mt-2 text-zinc-500">
+              My professional experience and education timeline.
+            </p>
+          </div>
+          <div class="relative max-w-3xl mx-auto">
+            <div class="timeline-path"></div>
+            <div id="timelineContainer"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="py-16">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-zinc-800">Project Spotlight</h2>
+            <p class="mt-2 text-zinc-500">
+              Click on a project to see the details.
+            </p>
+          </div>
+          <div
+            id="projectsGrid"
+            class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto"
+          ></div>
+        </div>
+      </section>
+    </main>
+
+    <div
+      id="modal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none modal-backdrop"
+    >
+      <div
+        class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto transform scale-95 modal-content"
+      >
+        <div class="p-6">
+          <div class="flex justify-between items-start">
+            <h3 id="modalTitle" class="text-2xl font-bold text-zinc-800"></h3>
+            <button
+              id="closeModalBtn"
+              class="text-zinc-500 hover:text-zinc-800"
+            >
+              &times;
+            </button>
+          </div>
+          <div id="modalBody" class="mt-4 text-zinc-600 space-y-4"></div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-zinc-800 text-white py-8">
+      <div class="container mx-auto px-6 text-center">
+        <p>&copy; 2025 Joel Ymele Leki. All rights reserved.</p>
+        <p class="mt-2 text-zinc-400">
+          Built as an interactive resume experience.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const skillsData = {
+          Frontend: [
+            "React.js & Hooks",
+            "Next.js",
+            "Angular 16",
+            "HTML5 & CSS3",
+            "TailwindCSS",
+          ],
+          "Backend & API": [
+            "Node.js & Express.js",
+            "TypeScript",
+            "Microservices",
+            "REST API Design",
+            "PostgreSQL & Prisma",
+          ],
+          "DevOps & Infra": [
+            "AWS & Docker",
+            "CI/CD Pipelines",
+            "Git & Version Control",
+            "Ubuntu Server Mgmt",
+            "Webpack & NPM",
+          ],
+          "Analytics & Tools": [
+            "Google Analytics 4",
+            "Google Tag Manager",
+            "Postman & API Testing",
+            "WordPress (CMS)",
+            "JEST (Unit Testing)",
+          ],
+        };
+
+        const experienceData = [
+          {
+            type: "Work",
+            title: "Full Stack Engineer",
+            context: "Groupe Media TFO",
+            date: "2014 – Present",
+            details: [
+              "<strong>Engineered Growth-Focused Analytics:</strong> Collaborated directly with the marketing department to architect and implement advanced tracking solutions using Google Analytics 4. This enabled the measurement of key performance indicators (KPIs) and provided actionable data to guide user acquisition and engagement strategies.",
+              "<strong>Led Backend Modernization:</strong> Took full ownership of a legacy backend system, re-architecting it into scalable Node.js microservices. This initiative improved system resilience and reduced API latency by 30%.",
+              "<strong>Developed Enterprise-Level APIs:</strong> Designed and launched a new suite of REST APIs in TypeScript, creating robust and secure endpoints that enabled critical new integrations with enterprise partners.",
+              "<strong>Optimized Application Performance:</strong> Boosted frontend and backend performance by optimizing PostgreSQL queries, implementing caching strategies, and containerizing applications with Docker, leading to a faster, more reliable user experience.",
+              "<strong>Mentored & Reviewed Code:</strong> Acted as a senior resource, reviewing code from external developers and mentoring junior team members on best practices for building maintainable and testable code.",
+            ],
+          },
+          {
+            type: "Education",
+            title: "Web Development Certificate",
+            context: "Humber College",
+            date: "2013",
+            details: [
+              "Completed a comprehensive certificate program focusing on modern web development practices, covering both front-end and back-end technologies.",
+            ],
+          },
+          {
+            type: "Education",
+            title: "BSc in Applied Mathematics",
+            context: "York University",
+            date: "2012",
+            details: [
+              "Developed a strong foundation in logical reasoning, problem-solving, and data analysis through a rigorous mathematics curriculum.",
+            ],
+          },
+        ];
+
+        const projectsData = [
+          {
+            title: "Deepdil.ai",
+            context: "Next.js & TailwindCSS",
+            details:
+              "Architected and built a modern, responsive website from the ground up, implementing a reusable component-based structure in React that prioritized performance, scalability, and an exceptional user experience.",
+          },
+          {
+            title: "Biochemical Engineering Research Group Website",
+            context: "WordPress CMS",
+            details:
+              "Led a client-facing project to deliver a complete website solution. Translated client requirements into a customized and user-friendly WordPress platform, allowing for easy content management and publication updates.",
+          },
+        ];
+
+        const skillsListEl = document.getElementById("skillsList");
+        const showAllSkillsBtn = document.getElementById("showAllSkillsBtn");
+
+        const renderSkills = (filter = null) => {
+          skillsListEl.innerHTML = "";
+          Object.entries(skillsData).forEach(([category, skills]) => {
+            if (!filter || filter === category) {
+              skills.forEach((skill) => {
+                const skillEl = document.createElement("div");
+                skillEl.className =
+                  "bg-zinc-100 text-zinc-700 p-3 rounded-md text-sm font-medium";
+                skillEl.textContent = skill;
+                skillsListEl.appendChild(skillEl);
+              });
+            }
+          });
+        };
+
+        const ctx = document.getElementById("skillsChart").getContext("2d");
+        const skillsChart = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: Object.keys(skillsData),
+            datasets: [
+              {
+                label: "Skill Category Focus",
+                data: [90, 95, 80, 85],
+                backgroundColor: [
+                  "rgba(59, 130, 246, 0.7)",
+                  "rgba(239, 68, 68, 0.7)",
+                  "rgba(22, 163, 74, 0.7)",
+                  "rgba(249, 115, 22, 0.7)",
+                ],
+                borderColor: [
+                  "rgba(59, 130, 246, 1)",
+                  "rgba(239, 68, 68, 1)",
+                  "rgba(22, 163, 74, 1)",
+                  "rgba(249, 115, 22, 1)",
+                ],
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            indexAxis: "y",
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false,
+              },
+              tooltip: {
+                callbacks: {
+                  label: function (context) {
+                    return " Click to filter by this category";
+                  },
+                },
+              },
+            },
+            scales: {
+              x: {
+                beginAtZero: true,
+                grid: {
+                  display: false,
+                  drawBorder: false,
+                },
+                ticks: {
+                  display: false,
+                },
+              },
+              y: {
+                grid: {
+                  display: false,
+                  drawBorder: false,
+                },
+                ticks: {
+                  font: {
+                    size: 14,
+                    weight: "500",
+                  },
+                  color: "#3f3f46",
+                },
+              },
+            },
+            onClick: (event, elements) => {
+              if (elements.length > 0) {
+                const clickedIndex = elements[0].index;
+                const category = skillsChart.data.labels[clickedIndex];
+                renderSkills(category);
+              }
+            },
+          },
+        });
+
+        showAllSkillsBtn.addEventListener("click", () => renderSkills());
+        renderSkills();
+
+        const timelineContainer = document.getElementById("timelineContainer");
+        experienceData.forEach((item) => {
+          const itemEl = document.createElement("div");
+          itemEl.className =
+            "mb-8 ml-4 pl-8 relative timeline-item cursor-pointer hover:bg-zinc-50 p-2 rounded-md transition";
+          itemEl.innerHTML = `
+                    <h3 class="font-bold text-lg text-zinc-800">${item.title}</h3>
+                    <p class="font-semibold text-blue-500">${item.context}</p>
+                    <p class="text-sm text-zinc-500">${item.date}</p>
+                `;
+          itemEl.addEventListener("click", () =>
+            openModal(
+              item.title,
+              Array.isArray(item.details)
+                ? `<ul>${item.details
+                    .map((d) => `<li class="list-disc ml-5 mb-2">${d}</li>`)
+                    .join("")}</ul>`
+                : `<p>${item.details}</p>`
+            )
+          );
+          timelineContainer.appendChild(itemEl);
+        });
+
+        const projectsGrid = document.getElementById("projectsGrid");
+        projectsData.forEach((project) => {
+          const projectEl = document.createElement("div");
+          projectEl.className =
+            "bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-300";
+          projectEl.innerHTML = `
+                    <h3 class="font-bold text-xl text-zinc-800">${project.title}</h3>
+                    <p class="text-blue-500 font-semibold mt-1">${project.context}</p>
+                    <p class="text-zinc-600 mt-4">Click to learn more about this project.</p>
+                `;
+          projectEl.addEventListener("click", () =>
+            openModal(project.title, `<p>${project.details}</p>`)
+          );
+          projectsGrid.appendChild(projectEl);
+        });
+
+        const modal = document.getElementById("modal");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalBody = document.getElementById("modalBody");
+        const closeModalBtn = document.getElementById("closeModalBtn");
+
+        const openModal = (title, body) => {
+          modalTitle.textContent = title;
+          modalBody.innerHTML = body;
+          modal.classList.remove("opacity-0", "pointer-events-none");
+          modal.querySelector(".modal-content").classList.remove("scale-95");
+        };
+
+        const closeModal = () => {
+          modal.classList.add("opacity-0");
+          modal.querySelector(".modal-content").classList.add("scale-95");
+          setTimeout(() => {
+            modal.classList.add("pointer-events-none");
+          }, 300);
+        };
+
+        closeModalBtn.addEventListener("click", closeModal);
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            closeModal();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
