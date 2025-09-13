@@ -9,7 +9,7 @@ const Hero: React.FC = () => {
     <section id="hero" className="py-20 md:py-32">
       <div className="container mx-auto px-6 text-center">
         <motion.h1
-          className="text-4xl md:text-6xl font-extrabold text-zinc-900 leading-tight"
+          className="text-4xl md:text-6xl font-extrabold text-zinc-900 dark:text-zinc-100 leading-tight"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -17,7 +17,7 @@ const Hero: React.FC = () => {
           Senior Full Stack Engineer
         </motion.h1>
         <motion.p
-          className="mt-4 text-lg md:text-xl text-zinc-600 max-w-3xl mx-auto"
+          className="mt-4 text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-3xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -33,19 +33,21 @@ const Hero: React.FC = () => {
         >
           <motion.a
             href="mailto:joel.ymele@gmail.com"
-            className="inline-flex items-center bg-blue-500 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition-colors"
+            className="inline-flex items-center bg-blue-500 dark:bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 dark:hover:bg-blue-700 transition-colors"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <Mail className="w-4 h-4 mr-2" />
             Contact Me
           </motion.a>
-          <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 text-zinc-500">
+          <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 text-zinc-500 dark:text-zinc-400">
             <div className="flex items-center">
               <Phone className="w-4 h-4 mr-1" />
               647-779-6002
             </div>
-            <span className="text-zinc-400 hidden sm:block">|</span>
+            <span className="text-zinc-400 dark:text-zinc-500 hidden sm:block">
+              |
+            </span>
             <div className="flex items-center">
               <MapPin className="w-4 h-4 mr-1" />
               Pickering, ON

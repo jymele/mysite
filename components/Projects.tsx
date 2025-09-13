@@ -25,10 +25,10 @@ const Projects: React.FC = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl font-bold text-zinc-800">
+          <h2 className="text-3xl font-bold text-zinc-800 dark:text-zinc-200">
             Project Spotlight
           </h2>
-          <p className="mt-2 text-zinc-500">
+          <p className="mt-2 text-zinc-500 dark:text-zinc-400">
             Click on a project to see the details.
           </p>
         </motion.div>
@@ -42,7 +42,7 @@ const Projects: React.FC = () => {
           {projectsData.map((project, index) => (
             <motion.div
               key={index}
-              className="bg-white rounded-lg shadow-md p-6 cursor-pointer hover:shadow-xl transition-all duration-300"
+              className="bg-white dark:bg-zinc-800 rounded-lg shadow-md dark:shadow-zinc-700/20 p-6 cursor-pointer hover:shadow-xl dark:hover:shadow-zinc-600/30 transition-all duration-300"
               onClick={() => handleProjectClick(project)}
               whileHover={{ y: -4 }}
               whileTap={{ scale: 0.98 }}
@@ -51,13 +51,13 @@ const Projects: React.FC = () => {
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
             >
-              <h3 className="font-bold text-xl text-zinc-800">
+              <h3 className="font-bold text-xl text-zinc-800 dark:text-zinc-200">
                 {project.title}
               </h3>
-              <p className="text-blue-500 font-semibold mt-1">
+              <p className="text-blue-500 dark:text-blue-400 font-semibold mt-1">
                 {project.context}
               </p>
-              <p className="text-zinc-600 mt-4">
+              <p className="text-zinc-600 dark:text-zinc-400 mt-4">
                 Click to learn more about this project.
               </p>
             </motion.div>

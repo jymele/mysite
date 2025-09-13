@@ -22,7 +22,7 @@ const Experience: React.FC = () => {
   };
 
   return (
-    <section id="experience" className="py-16 bg-white">
+    <section id="experience" className="py-16 bg-white dark:bg-zinc-800">
       <div className="container mx-auto px-6">
         <motion.div
           className="text-center mb-12"
@@ -31,8 +31,10 @@ const Experience: React.FC = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl font-bold text-zinc-800">Career Journey</h2>
-          <p className="mt-2 text-zinc-500">
+          <h2 className="text-3xl font-bold text-zinc-800 dark:text-zinc-200">
+            Career Journey
+          </h2>
+          <p className="mt-2 text-zinc-500 dark:text-zinc-400">
             My professional experience and education timeline.
           </p>
         </motion.div>
@@ -42,7 +44,7 @@ const Experience: React.FC = () => {
             {experienceData.map((item, index) => (
               <motion.div
                 key={index}
-                className="mb-8 ml-4 pl-8 relative timeline-item cursor-pointer hover:bg-zinc-50 p-2 rounded-md transition-colors"
+                className="mb-8 ml-4 pl-8 relative timeline-item cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-700 p-2 rounded-md transition-colors"
                 onClick={() => handleExperienceClick(item)}
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -51,11 +53,15 @@ const Experience: React.FC = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <h3 className="font-bold text-lg text-zinc-800">
+                <h3 className="font-bold text-lg text-zinc-800 dark:text-zinc-200">
                   {item.title}
                 </h3>
-                <p className="font-semibold text-blue-500">{item.context}</p>
-                <p className="text-sm text-zinc-500">{item.date}</p>
+                <p className="font-semibold text-blue-500 dark:text-blue-400">
+                  {item.context}
+                </p>
+                <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                  {item.date}
+                </p>
               </motion.div>
             ))}
           </div>

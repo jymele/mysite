@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const About: React.FC = () => {
   return (
-    <section id="summary" className="py-16 bg-white">
+    <section id="summary" className="py-16 bg-white dark:bg-zinc-800">
       <div className="container mx-auto px-6">
         <motion.div
           className="text-center mb-12"
@@ -14,13 +14,15 @@ const About: React.FC = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl font-bold text-zinc-800">About Me</h2>
-          <p className="mt-2 text-zinc-500">
+          <h2 className="text-3xl font-bold text-zinc-800 dark:text-zinc-200">
+            About Me
+          </h2>
+          <p className="mt-2 text-zinc-500 dark:text-zinc-400">
             A brief introduction to my professional journey.
           </p>
         </motion.div>
         <motion.p
-          className="text-lg text-zinc-700 max-w-4xl mx-auto leading-relaxed text-center"
+          className="text-lg text-zinc-700 dark:text-zinc-300 max-w-4xl mx-auto leading-relaxed text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}

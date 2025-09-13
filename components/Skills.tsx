@@ -129,15 +129,15 @@ const Skills: React.FC = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl font-bold text-zinc-800">
+          <h2 className="text-3xl font-bold text-zinc-800 dark:text-zinc-200">
             Interactive Skills Showcase
           </h2>
-          <p className="mt-2 text-zinc-500">
+          <p className="mt-2 text-zinc-500 dark:text-zinc-400">
             Click on a category in the chart to filter the skills list below.
           </p>
         </motion.div>
         <motion.div
-          className="bg-white p-6 rounded-lg shadow-md"
+          className="bg-white dark:bg-zinc-800 p-6 rounded-lg shadow-md dark:shadow-zinc-700/20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -150,7 +150,7 @@ const Skills: React.FC = () => {
             <div className="flex justify-center mb-4">
               <motion.button
                 onClick={showAllSkills}
-                className="bg-blue-500 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
+                className="bg-blue-500 dark:bg-blue-600 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-600 dark:hover:bg-blue-700 transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -164,7 +164,7 @@ const Skills: React.FC = () => {
               {filteredSkills.map((skill, index) => (
                 <motion.div
                   key={skill}
-                  className="bg-zinc-100 text-zinc-700 p-3 rounded-md text-sm font-medium"
+                  className="bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 p-3 rounded-md text-sm font-medium"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1 }}

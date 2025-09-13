@@ -6,3 +6,4 @@ export { default as Experience } from "./Experience";
 export { default as Projects } from "./Projects";
 export { default as Footer } from "./Footer";
 export { default as Modal } from "./Modal";
+export { default as ThemeToggle } from "./ThemeToggle";
