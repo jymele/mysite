@@ -1,0 +1,43 @@
+"use client";
+
+import React from "react";
+import { motion } from "framer-motion";
+
+const About: React.FC = () => {
+  return (
+    <section id="summary" className="py-16 bg-white">
+      <div className="container mx-auto px-6">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-3xl font-bold text-zinc-800">About Me</h2>
+          <p className="mt-2 text-zinc-500">
+            A brief introduction to my professional journey.
+          </p>
+        </motion.div>
+        <motion.p
+          className="text-lg text-zinc-700 max-w-4xl mx-auto leading-relaxed text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          I am a results-driven Senior Full Stack Engineer with over a decade of
+          experience translating complex business needs into high-performance
+          web applications. I specialize in building and optimizing user-centric
+          solutions with React.js and Node.js, and have a proven track record of
+          collaborating with marketing teams to implement analytics and drive
+          measurable growth. My passion lies in taking full ownership of the
+          development lifecycle to deliver robust, scalable, and maintainable
+          code.
+        </motion.p>
+      </div>
+    </section>
+  );
+};
+
+export default About;
