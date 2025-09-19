@@ -8,20 +8,24 @@ import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import Footer from "@/components/Footer";
 import Modal from "@/components/Modal";
+import Chatbot from "@/components/Chatbot";
 
 export default function Home() {
   return (
-    <ModalProvider>
-      <main>
-        <Navigation />
-        <Hero />
-        <About />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Footer />
-        <Modal />
-      </main>
-    </ModalProvider>
+    <>
+      <ModalProvider>
+        <main>
+          <Navigation />
+          <Hero />
+          <Chatbot />
+          <About />
+          <Skills />
+          <Experience />
+          <Projects />
+          <Footer />
+          <Modal />
+        </main>
+      </ModalProvider>
+    </>
   );
 }
