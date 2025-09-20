@@ -7,6 +7,7 @@ This is a TypeScript and NextJS project. Please adhere to the following conventi
 - The styling is done using Tailwind CSS.
 - The animations are handled with Framer Motion.
 - The icons are sourced from Lucide Icons React.
+- Most components are imported from Shadcn UI.
 
 ## Coding Style
 
