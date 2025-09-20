@@ -80,9 +80,9 @@ const Chatbot: React.FC = () => {
       <Button size="icon" className="bg-blue-900 hover:bg-blue-800 w-12 h-12">
         <Sparkles className="text-slate-100" />
       </Button>
-      <Card className="shadow-lg">
+      <Card className="shadow-lg bg-white">
         <CardContent className="p-0">
-          <div className="chatbot-messages p-4 max-h-80 overflow-y-auto">
+          <div className="chatbot-messages p-4 max-h-80 overflow-y-auto text-slate-700">
             {message.map((msg, index) => (
               <div
                 key={index}
@@ -103,7 +103,7 @@ const Chatbot: React.FC = () => {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Type your message..."
               disabled={isLoading}
-              className="flex-1"
+              className="flex-1 text-slate-700"
             />
             <Button
               type="submit"
