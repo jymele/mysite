@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, FormEvent } from "react";
+import { Sparkles } from "lucide-react";
 
 type Message = {
   sender: "user" | "bot";
@@ -72,26 +73,31 @@ const Chatbot: React.FC = () => {
   };
 
   return (
-    <div className="chatbot-container">
-      <div className="chatbot-messages">
-        {message.map((msg, index) => (
-          <div key={index} className={`chatbot-message ${msg.sender}`}>
-            {msg.text}
-          </div>
-        ))}
+    <div className="fixed bottom-4 right-4 flex flex-col-reverse gap-4 w-72">
+      <button className="bg-blue-900 rounded-lg w-12 h-12 flex justify-center items-center">
+        <Sparkles className="text-slate-100" />
+      </button>
+      <div className="bg-white dark:bg-slate-800 shadow-sm rounded-lg overflow-hidden">
+        <div className="chatbot-messages p-4 max-h-80 overflow-y-auto">
+          {message.map((msg, index) => (
+            <div key={index} className={`chatbot-message ${msg.sender}`}>
+              {msg.text}
+            </div>
+          ))}
+        </div>
+        <form onSubmit={handleSubmit} className="chatbot-form p-2">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Type your message..."
+            disabled={isLoading}
+          />
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Loading..." : "Send"}
+          </button>
+        </form>
       </div>
-      <form onSubmit={handleSubmit} className="chatbot-form">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Type your message..."
-          disabled={isLoading}
-        />
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? "Loading..." : "Send"}
-        </button>
-      </form>
     </div>
   );
 };
