@@ -3,10 +3,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
-import { useTheme } from "@/context/ThemeContext";
+import { useTheme } from "next-themes";
 
 const ThemeToggle: React.FC = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
 
   return (
     <motion.button
