@@ -33,7 +33,7 @@ const Navigation: React.FC = () => {
 
   return (
     <motion.nav
-      className="bg-white/80 dark:bg-zinc-800/80 backdrop-blur-md shadow-sm dark:shadow-zinc-700/20 sticky top-0 z-50"
+      className="bg-white/80 dark:bg-zinc-800/80 backdrop-blur-md shadow-xs dark:shadow-zinc-700/20 sticky top-0 z-50"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
