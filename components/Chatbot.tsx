@@ -16,9 +16,6 @@ const Chatbot: React.FC = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // Debug: Log the API endpoint to console
-  console.log("API_ENDPOINT:", API_ENDPOINT);
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
@@ -59,11 +56,7 @@ const Chatbot: React.FC = () => {
 
       const botMessage: Message = {
         sender: "bot",
-        text:
-          data.answer ||
-          data.message ||
-          data.response ||
-          "Sorry, I couldn't process your request.",
+        text: data.output.text || "Sorry, I couldn't process your request.",
       };
       setMessage((prev) => [...prev, botMessage]);
     } catch (error) {
