@@ -1,10 +1,21 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ThemeToggle } from "@/components";
+import { Menu } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const Navigation: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const navItems = [
     { href: "#summary", label: "Summary" },
     { href: "#skills", label: "Skills" },
@@ -17,6 +28,7 @@ const Navigation: React.FC = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+    setIsOpen(false); // Close mobile menu after navigation
   };
 
   return (
@@ -41,7 +53,7 @@ const Navigation: React.FC = () => {
                 <motion.button
                   key={item.href}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                  className="text-zinc-600 dark:text-zinc-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors px-3 py-2 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-700"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, x: 20 }}
@@ -52,6 +64,35 @@ const Navigation: React.FC = () => {
                 </motion.button>
               ))}
             </div>
+
+            {/* Mobile Navigation */}
+            <div className="md:hidden">
+              <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon">
+                    <Menu className="h-5 w-5" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right">
+                  <SheetHeader>
+                    <SheetTitle>Navigation</SheetTitle>
+                  </SheetHeader>
+                  <div className="flex flex-col space-y-4 mt-6">
+                    {navItems.map((item) => (
+                      <Button
+                        key={item.href}
+                        variant="ghost"
+                        onClick={() => scrollToSection(item.href)}
+                        className="justify-start text-zinc-600 dark:text-zinc-400 hover:text-blue-500 dark:hover:text-blue-400"
+                      >
+                        {item.label}
+                      </Button>
+                    ))}
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
+
             <ThemeToggle />
           </div>
         </div>

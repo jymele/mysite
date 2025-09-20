@@ -2,7 +2,7 @@ import React from "react";
 import "@/app/globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/context/ThemeContext";
-import { GoogleAnalytics } from "@/components";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const inter = Inter({
   subsets: ["latin"],

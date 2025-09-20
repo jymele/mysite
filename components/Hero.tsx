@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Hero: React.FC = () => {
   return (
@@ -33,12 +34,14 @@ const Hero: React.FC = () => {
         >
           <motion.a
             href="mailto:joel.ymele@gmail.com"
-            className="inline-flex items-center bg-blue-500 dark:bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 dark:hover:bg-blue-700 transition-colors"
+            className="inline-flex"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Mail className="w-4 h-4 mr-2" />
-            Contact Me
+            <Button className="bg-blue-500 dark:bg-blue-600 hover:bg-blue-600 dark:hover:bg-blue-700">
+              <Mail className="w-4 h-4 mr-2" />
+              Contact Me
+            </Button>
           </motion.a>
           <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 text-zinc-500 dark:text-zinc-400">
             <div className="flex items-center">

@@ -4,6 +4,13 @@ import React from "react";
 import { motion } from "framer-motion";
 import { projectsData } from "@/data/portfolio";
 import { useModal } from "@/context/ModalContext";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card";
 
 const Projects: React.FC = () => {
   const { openModal } = useModal();
@@ -42,7 +49,7 @@ const Projects: React.FC = () => {
           {projectsData.map((project, index) => (
             <motion.div
               key={index}
-              className="bg-white dark:bg-zinc-800 rounded-lg shadow-md dark:shadow-zinc-700/20 p-6 cursor-pointer hover:shadow-xl dark:hover:shadow-zinc-600/30 transition-all duration-300"
+              className="cursor-pointer transition-all duration-300"
               onClick={() => handleProjectClick(project)}
               whileHover={{ y: -4 }}
               whileTap={{ scale: 0.98 }}
@@ -51,15 +58,21 @@ const Projects: React.FC = () => {
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
             >
-              <h3 className="font-bold text-xl text-zinc-800 dark:text-zinc-200">
-                {project.title}
-              </h3>
-              <p className="text-blue-500 dark:text-blue-400 font-semibold mt-1">
-                {project.context}
-              </p>
-              <p className="text-zinc-600 dark:text-zinc-400 mt-4">
-                Click to learn more about this project.
-              </p>
+              <Card className="h-full hover:shadow-xl dark:hover:shadow-zinc-600/30 transition-shadow duration-300">
+                <CardHeader>
+                  <CardTitle className="text-zinc-800 dark:text-zinc-200">
+                    {project.title}
+                  </CardTitle>
+                  <CardDescription className="text-blue-500 dark:text-blue-400 font-semibold">
+                    {project.context}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-zinc-600 dark:text-zinc-400">
+                    Click to learn more about this project.
+                  </p>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
         </motion.div>

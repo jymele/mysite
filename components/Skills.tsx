@@ -13,6 +13,9 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { skillsData } from "@/data/portfolio";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 
 ChartJS.register(
   CategoryScale,
@@ -27,11 +30,6 @@ const Skills: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [filteredSkills, setFilteredSkills] = useState<string[]>([]);
 
-  useEffect(() => {
-    // Show all skills by default
-    showAllSkills();
-  }, []);
-
   const showAllSkills = () => {
     const allSkills: string[] = [];
     Object.values(skillsData).forEach((skills) => {
@@ -45,6 +43,11 @@ const Skills: React.FC = () => {
     setFilteredSkills(skillsData[category] || []);
     setSelectedCategory(category);
   };
+
+  useEffect(() => {
+    // Show all skills by default
+    showAllSkills();
+  }, []);
 
   const chartData = {
     labels: Object.keys(skillsData),
@@ -137,44 +140,50 @@ const Skills: React.FC = () => {
           </p>
         </motion.div>
         <motion.div
-          className="bg-white dark:bg-zinc-800 p-6 rounded-lg shadow-md dark:shadow-zinc-700/20"
+          className="max-w-6xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <div className="chart-container">
-            <Bar data={chartData} options={chartOptions} />
-          </div>
-          <div className="mt-8">
-            <div className="flex justify-center mb-4">
-              <motion.button
-                onClick={showAllSkills}
-                className="bg-blue-500 dark:bg-blue-600 text-white font-semibold px-4 py-2 rounded-md hover:bg-blue-600 dark:hover:bg-blue-700 transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Show All Skills
-              </motion.button>
-            </div>
-            <motion.div
-              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 text-center"
-              layout
-            >
-              {filteredSkills.map((skill, index) => (
+          <Card className="p-6">
+            <CardContent className="p-0">
+              <div className="chart-container">
+                <Bar data={chartData} options={chartOptions} />
+              </div>
+              <div className="mt-8">
+                <div className="flex justify-center mb-4">
+                  <Button
+                    onClick={showAllSkills}
+                    className="bg-blue-500 dark:bg-blue-600 hover:bg-blue-600 dark:hover:bg-blue-700"
+                  >
+                    Show All Skills
+                  </Button>
+                </div>
                 <motion.div
-                  key={skill}
-                  className="bg-zinc-100 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 p-3 rounded-md text-sm font-medium"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.1 }}
+                  className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 text-center"
                   layout
                 >
-                  {skill}
+                  {filteredSkills.map((skill, index) => (
+                    <motion.div
+                      key={skill}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.1 }}
+                      layout
+                    >
+                      <Badge
+                        variant="secondary"
+                        className="p-3 text-sm font-medium w-full justify-center"
+                      >
+                        {skill}
+                      </Badge>
+                    </motion.div>
+                  ))}
                 </motion.div>
-              ))}
-            </motion.div>
-          </div>
+              </div>
+            </CardContent>
+          </Card>
         </motion.div>
       </div>
     </section>

@@ -4,6 +4,13 @@ import React from "react";
 import { motion } from "framer-motion";
 import { experienceData } from "@/data/portfolio";
 import { useModal } from "@/context/ModalContext";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 
 const Experience: React.FC = () => {
   const { openModal } = useModal();
@@ -39,12 +46,11 @@ const Experience: React.FC = () => {
           </p>
         </motion.div>
         <div className="relative max-w-3xl mx-auto">
-          <div className="timeline-path"></div>
-          <div>
+          <div className="space-y-6">
             {experienceData.map((item, index) => (
               <motion.div
                 key={index}
-                className="mb-8 ml-4 pl-8 relative timeline-item cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-700 p-2 rounded-md transition-colors"
+                className="cursor-pointer transition-all duration-300"
                 onClick={() => handleExperienceClick(item)}
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -53,15 +59,21 @@ const Experience: React.FC = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <h3 className="font-bold text-lg text-zinc-800 dark:text-zinc-200">
-                  {item.title}
-                </h3>
-                <p className="font-semibold text-blue-500 dark:text-blue-400">
-                  {item.context}
-                </p>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                  {item.date}
-                </p>
+                <Card className="hover:shadow-lg dark:hover:shadow-zinc-600/30 transition-shadow duration-300">
+                  <CardHeader>
+                    <CardTitle className="text-zinc-800 dark:text-zinc-200">
+                      {item.title}
+                    </CardTitle>
+                    <CardDescription className="font-semibold text-blue-500 dark:text-blue-400">
+                      {item.context}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                      {item.date}
+                    </p>
+                  </CardContent>
+                </Card>
               </motion.div>
             ))}
           </div>

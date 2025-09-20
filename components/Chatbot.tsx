@@ -1,6 +1,9 @@
 "use client";
 import React, { useState, FormEvent } from "react";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Send } from "lucide-react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Card, CardContent } from "./ui/card";
 
 type Message = {
   sender: "user" | "bot";
@@ -74,30 +77,49 @@ const Chatbot: React.FC = () => {
 
   return (
     <div className="fixed bottom-4 right-4 flex flex-col-reverse gap-4 w-72">
-      <button className="bg-blue-900 rounded-lg w-12 h-12 flex justify-center items-center">
+      <Button size="icon" className="bg-blue-900 hover:bg-blue-800 w-12 h-12">
         <Sparkles className="text-slate-100" />
-      </button>
-      <div className="bg-white dark:bg-slate-800 shadow-sm rounded-lg overflow-hidden">
-        <div className="chatbot-messages p-4 max-h-80 overflow-y-auto">
-          {message.map((msg, index) => (
-            <div key={index} className={`chatbot-message ${msg.sender}`}>
-              {msg.text}
-            </div>
-          ))}
-        </div>
-        <form onSubmit={handleSubmit} className="chatbot-form p-2">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Type your message..."
-            disabled={isLoading}
-          />
-          <button type="submit" disabled={isLoading}>
-            {isLoading ? "Loading..." : "Send"}
-          </button>
-        </form>
-      </div>
+      </Button>
+      <Card className="shadow-lg">
+        <CardContent className="p-0">
+          <div className="chatbot-messages p-4 max-h-80 overflow-y-auto">
+            {message.map((msg, index) => (
+              <div
+                key={index}
+                className={`chatbot-message ${msg.sender} mb-2 p-2 rounded ${
+                  msg.sender === "user"
+                    ? "bg-blue-100 dark:bg-blue-900 ml-4"
+                    : "bg-gray-100 dark:bg-gray-700 mr-4"
+                }`}
+              >
+                {msg.text}
+              </div>
+            ))}
+          </div>
+          <form onSubmit={handleSubmit} className="p-2 flex gap-2">
+            <Input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Type your message..."
+              disabled={isLoading}
+              className="flex-1"
+            />
+            <Button
+              type="submit"
+              disabled={isLoading}
+              size="icon"
+              className="shrink-0"
+            >
+              {isLoading ? (
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+              ) : (
+                <Send className="h-4 w-4" />
+              )}
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
     </div>
   );
 };
