@@ -155,7 +155,7 @@ const Skills: React.FC = () => {
                 <div className="flex justify-center mb-4">
                   <Button
                     onClick={showAllSkills}
-                    className="bg-blue-500 dark:bg-blue-600 hover:bg-blue-600 dark:hover:bg-blue-700"
+                    className="bg-blue-500 dark:bg-blue-600 hover:bg-blue-600 dark:hover:bg-blue-700 text-slate-50"
                   >
                     Show All Skills
                   </Button>
