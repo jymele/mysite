@@ -38,19 +38,12 @@ const Hero: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button className="bg-blue-500 dark:bg-blue-600 hover:bg-blue-600 dark:hover:bg-blue-700">
+            <Button className="text-slate-50 bg-blue-500 dark:bg-blue-600 hover:bg-blue-600 dark:hover:bg-blue-700">
               <Mail className="w-4 h-4 mr-2" />
               Contact Me
             </Button>
           </motion.a>
           <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 text-zinc-500 dark:text-zinc-400">
-            <div className="flex items-center">
-              <Phone className="w-4 h-4 mr-1" />
-              647-779-6002
-            </div>
-            <span className="text-zinc-400 dark:text-zinc-500 hidden sm:block">
-              |
-            </span>
             <div className="flex items-center">
               <MapPin className="w-4 h-4 mr-1" />
               Pickering, ON
