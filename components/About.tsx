@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const About: React.FC = () => {
   return (
-    <section id="summary" className="py-16 bg-white dark:bg-zinc-800">
+    <section id="summary" className="py-16">
       <div className="container mx-auto px-6">
         <motion.div
           className="text-center mb-12"
