@@ -10,9 +10,14 @@ type Message = {
   text: string;
 };
 
-const API_ENDPOINT = `${process.env.NEXT_PUBLIC_AWS_API_GATEWAY_INVOKE_URL}/chat`;
-
 const Chatbot: React.FC = () => {
+  if (!process.env.NEXT_PUBLIC_AWS_API_GATEWAY_INVOKE_URL) {
+    console.error("NEXT_PUBLIC_AWS_API_GATEWAY_INVOKE_URL is not defined.");
+    return <></>;
+  }
+
+  const API_ENDPOINT = `${process.env.NEXT_PUBLIC_AWS_API_GATEWAY_INVOKE_URL}/chat`;
+
   const [message, setMessage] = useState<Message[]>([
     { sender: "bot", text: "Hello! How can I assist you today?" },
   ]);
