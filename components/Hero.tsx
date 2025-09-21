@@ -1,32 +1,13 @@
 "use client";
-
 import React from "react";
 import { motion } from "motion/react";
 import { Mail, MapPin, Github, Linkedin, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 60 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: "easeOut" },
-};
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const scaleOnHover = {
-  whileHover: { scale: 1.05 },
-  whileTap: { scale: 0.95 },
-};
+import { fadeInUp, staggerContainer, scaleOnHover } from "@/lib/animations";
 
 const Hero: React.FC = () => {
   return (
-    <section className="max-w-4xl mx-auto px-6 py-16">
+    <section className="max-w-5xl mx-auto px-6 py-24">
       <motion.div
         className="space-y-6"
         variants={staggerContainer}
@@ -47,12 +28,12 @@ const Hero: React.FC = () => {
             variants={fadeInUp}
           >
             Building scalable web applications and microservices with modern
-            technologies
+            Typescript and NodeJS Frameworks
           </motion.p>
         </motion.div>
 
         <motion.div
-          className="flex items-center gap-6 text-sm text-muted-foreground justify-center"
+          className="flex flex-col md:flex-row items-center gap-6 text-sm text-muted-foreground justify-center"
           variants={fadeInUp}
         >
           <motion.div
