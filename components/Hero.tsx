@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 const Hero: React.FC = () => {
   return (
-    <section id="hero" className="py-20 md:py-32 bg-background">
+    <section id="hero" className="py-20 md:py-32">
       <div className="container mx-auto px-6 text-center">
         <motion.h1
           className="text-4xl md:text-6xl font-extrabold text-foreground leading-tight"
