@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, FormEvent } from "react";
 import { Sparkles, Send } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Card, CardContent } from "./ui/card";
@@ -24,6 +25,7 @@ const Chatbot: React.FC = () => {
 
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -82,49 +84,84 @@ const Chatbot: React.FC = () => {
 
   return (
     <div className="fixed bottom-4 right-4 flex items-end flex-col-reverse gap-4 w-72">
-      <Button size="icon" className="bg-blue-900 hover:bg-blue-800 w-12 h-12">
+      <Button
+        size="icon"
+        className="bg-blue-900 hover:bg-blue-800 w-12 h-12"
+        onClick={() => setIsChatOpen(!isChatOpen)}
+      >
         <Sparkles className="text-slate-100" />
       </Button>
-      <Card className="shadow-lg bg-white">
-        <CardContent className="p-0">
-          <div className="chatbot-messages p-4 max-h-80 overflow-y-auto text-slate-700">
-            {message.map((msg, index) => (
-              <div
-                key={index}
-                className={`chatbot-message ${msg.sender} mb-2 p-2 rounded ${
-                  msg.sender === "user"
-                    ? "bg-blue-100 dark:bg-blue-900 ml-4"
-                    : "bg-gray-100 dark:bg-gray-700 mr-4"
-                }`}
-              >
-                {msg.text}
-              </div>
-            ))}
-          </div>
-          <form onSubmit={handleSubmit} className="p-2 flex gap-2">
-            <Input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Type your message..."
-              disabled={isLoading}
-              className="flex-1 text-slate-700"
-            />
-            <Button
-              type="submit"
-              disabled={isLoading}
-              size="icon"
-              className="shrink-0"
-            >
-              {isLoading ? (
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
-              ) : (
-                <Send className="h-4 w-4" />
-              )}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+      <AnimatePresence>
+        {isChatOpen && (
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 20,
+              scale: 0.95,
+              transformOrigin: "bottom right",
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              transformOrigin: "bottom right",
+            }}
+            exit={{
+              opacity: 0,
+              y: 20,
+              scale: 0.95,
+              transformOrigin: "bottom right",
+            }}
+            transition={{
+              duration: 0.2,
+              ease: "easeOut",
+            }}
+          >
+            <Card className="shadow-lg bg-white">
+              <CardContent className="p-0">
+                <div className="chatbot-messages p-4 max-h-80 overflow-y-auto text-slate-700">
+                  {message.map((msg, index) => (
+                    <div
+                      key={index}
+                      className={`chatbot-message ${
+                        msg.sender
+                      } mb-2 p-2 rounded ${
+                        msg.sender === "user"
+                          ? "bg-blue-100 dark:bg-blue-900 ml-4"
+                          : "bg-gray-100 dark:bg-gray-700 mr-4"
+                      }`}
+                    >
+                      {msg.text}
+                    </div>
+                  ))}
+                </div>
+                <form onSubmit={handleSubmit} className="p-2 flex gap-2">
+                  <Input
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder="Type your message..."
+                    disabled={isLoading}
+                    className="flex-1 text-slate-700"
+                  />
+                  <Button
+                    type="submit"
+                    disabled={isLoading}
+                    size="icon"
+                    className="shrink-0"
+                  >
+                    {isLoading ? (
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+                    ) : (
+                      <Send className="h-4 w-4" />
+                    )}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
