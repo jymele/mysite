@@ -43,7 +43,7 @@ export default function Contact() {
                   asChild
                   className="shadow-lg hover:shadow-xl transition-shadow cta"
                 >
-                  <a href="mailto:joel@jymele.org">
+                  <a href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}>
                     <Mail className="h-4 w-4 mr-2" />
                     Send Email
                   </a>
@@ -56,7 +56,7 @@ export default function Contact() {
                   className="hover:bg-accent/50 transition-colors bg-transparent"
                 >
                   <a
-                    href="https://linkedin.com/in/jymele"
+                    href={process.env.NEXT_PUBLIC_LINKEDIN_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

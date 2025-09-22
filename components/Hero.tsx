@@ -42,7 +42,7 @@ const Hero: React.FC = () => {
             transition={{ type: "spring", stiffness: 300 }}
           >
             <MapPin className="h-4 w-4" />
-            <span>Remote</span>
+            <span>Remote or Hybrid</span>
           </motion.div>
           <motion.div
             className="flex items-center gap-2"
@@ -63,9 +63,10 @@ const Hero: React.FC = () => {
               asChild
               className="shadow-lg hover:shadow-xl transition-shadow cta"
             >
-              <a href="mailto:joel.ymele@gmail.com">Get in touch</a>
+              <a href={`#contact`}>Get in touch</a>
             </Button>
           </motion.div>
+
           <motion.div {...scaleOnHover}>
             <Button
               variant="outline"
@@ -87,16 +88,20 @@ const Hero: React.FC = () => {
         >
           {[
             {
-              href: "https://github.com/jymele",
+              href: process.env.NEXT_PUBLIC_GITHUB_URL || "#",
               icon: Github,
               label: "GitHub",
             },
             {
-              href: "https://linkedin.com/in/jymele",
+              href: process.env.NEXT_PUBLIC_LINKEDIN_URL || "#",
               icon: Linkedin,
               label: "LinkedIn",
             },
-            { href: "mailto:joel.ymele@gmail.com", icon: Mail, label: "Email" },
+            {
+              href: `mailto:${process.env.NEXT_PUBLIC_EMAIL}`,
+              icon: Mail,
+              label: "Email",
+            },
           ].map(({ href, icon: Icon, label }) => (
             <motion.div key={label} variants={fadeInUp}>
               <Button
