@@ -151,7 +151,7 @@ const Chatbot: React.FC = () => {
                     className="shrink-0 text-slate-100"
                   >
                     {isLoading ? (
-                      <LoaderCircle className="animate-spin border-white" />
+                      <LoaderCircle className="animate-spin text-slate-200" />
                     ) : (
                       <Send color="currentColor" fill="currentColor" />
                     )}
