@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import "@/app/globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/context/ThemeContext";
@@ -26,7 +26,9 @@ export default function RootLayout({
       <body
         className={`${inter.variable} font-inter antialiased transition-colors duration-300`}
       >
-        <GoogleAnalytics />
+        <Suspense fallback={null}>
+          <GoogleAnalytics />
+        </Suspense>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>
