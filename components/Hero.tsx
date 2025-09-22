@@ -61,11 +61,9 @@ const Hero: React.FC = () => {
           <motion.div {...scaleOnHover}>
             <Button
               asChild
-              className="shadow-lg hover:shadow-xl transition-shadow"
+              className="shadow-lg hover:shadow-xl transition-shadow cta"
             >
-              <a className="text-slate-50" href="mailto:joel.ymele@gmail.com">
-                Get in touch
-              </a>
+              <a href="mailto:joel.ymele@gmail.com">Get in touch</a>
             </Button>
           </motion.div>
           <motion.div {...scaleOnHover}>

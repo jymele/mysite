@@ -9,6 +9,7 @@ import Projects from "@/components/Projects";
 import Footer from "@/components/Footer";
 import Modal from "@/components/Modal";
 import Chatbot from "@/components/Chatbot";
+import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
@@ -17,13 +18,14 @@ export default function Home() {
         <main>
           <Navigation />
           <Hero />
-          <Chatbot />
           <About />
           <Skills />
           <Experience />
           <Projects />
+          <Contact />
           <Footer />
           <Modal />
+          <Chatbot />
         </main>
       </ModalProvider>
     </>
