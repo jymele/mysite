@@ -51,8 +51,8 @@ const Chatbot: React.FC = () => {
         body: JSON.stringify({ prompt: currentInput }),
       });
 
-      console.log("Response status:", response.status);
-      console.log("Response ok:", response.ok);
+      // console.log("Response status:", response.status);
+      // console.log("Response ok:", response.ok);
 
       if (!response.ok) {
         const errorText = await response.text();
@@ -86,10 +86,10 @@ const Chatbot: React.FC = () => {
     <div className="fixed bottom-4 right-4 flex items-end flex-col-reverse gap-4 w-72">
       <Button
         size="icon"
-        className="bg-blue-900 hover:bg-blue-800 w-12 h-12"
+        className="bg-blue-900 hover:bg-blue-800  text-slate-100"
         onClick={() => setIsChatOpen(!isChatOpen)}
       >
-        <Sparkles className="text-slate-100" />
+        <Sparkles fill="currentColor" size={64} />
       </Button>
       <AnimatePresence>
         {isChatOpen && (
@@ -117,9 +117,9 @@ const Chatbot: React.FC = () => {
               ease: "easeOut",
             }}
           >
-            <Card className="shadow-lg bg-white">
+            <Card className="shadow-lg bg-background">
               <CardContent className="p-0">
-                <div className="chatbot-messages p-4 max-h-80 overflow-y-auto text-slate-700">
+                <div className="chatbot-messages p-4 max-h-80 overflow-y-auto bg-muted">
                   {message.map((msg, index) => (
                     <div
                       key={index}
@@ -148,12 +148,12 @@ const Chatbot: React.FC = () => {
                     type="submit"
                     disabled={isLoading}
                     size="icon"
-                    className="shrink-0"
+                    className="shrink-0 text-slate-100"
                   >
                     {isLoading ? (
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
+                      <div className="animate-spin rounded-full border-b-2 border-white" />
                     ) : (
-                      <Send className="h-4 w-4" />
+                      <Send color="currentColor" fill="currentColor" />
                     )}
                   </Button>
                 </form>
