@@ -17,7 +17,7 @@ const Experience: React.FC = () => {
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6 }}
     >
-      <div className=" max-w-5xl mx-auto px-6 text-pretty">
+      <div className=" max-w-5xl mx-auto  text-pretty">
         <motion.h2
           className="text-3xl mb-4 font-bold text-foreground text-center"
           initial={{ opacity: 0, x: -20 }}
