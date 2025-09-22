@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, FormEvent } from "react";
-import { Sparkles, Send } from "lucide-react";
+import { Sparkles, Send, LoaderCircle } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -142,7 +142,7 @@ const Chatbot: React.FC = () => {
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="Type your message..."
                     disabled={isLoading}
-                    className="flex-1 text-slate-700"
+                    className="flex-1 text-muted-foreground"
                   />
                   <Button
                     type="submit"
@@ -151,7 +151,7 @@ const Chatbot: React.FC = () => {
                     className="shrink-0 text-slate-100"
                   >
                     {isLoading ? (
-                      <div className="animate-spin rounded-full border-b-2 border-white" />
+                      <LoaderCircle className="animate-spin border-white" />
                     ) : (
                       <Send color="currentColor" fill="currentColor" />
                     )}
