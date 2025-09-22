@@ -81,7 +81,7 @@ const Chatbot: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 flex flex-col-reverse gap-4 w-72">
+    <div className="fixed bottom-4 right-4 flex items-end flex-col-reverse gap-4 w-72">
       <Button size="icon" className="bg-blue-900 hover:bg-blue-800 w-12 h-12">
         <Sparkles className="text-slate-100" />
       </Button>
