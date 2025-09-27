@@ -12,9 +12,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { X } from "lucide-react";
 
 const Navigation: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
     { href: "#summary", label: "Summary" },
@@ -28,46 +30,65 @@ const Navigation: React.FC = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-    setIsOpen(false); // Close mobile menu after navigation
+    setIsMobileMenuOpen(false); // Close mobile menu after navigation
   };
 
   return (
-    <motion.nav
-      className="bg-foreground/10 backdrop-blur-md shadow-xs dark:shadow-zinc-700/20 sticky top-0 z-50"
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+    <motion.header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-background/95 backdrop-blur-md elevation-2"
+          : "bg-transparent"
+      }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="container mx-auto px-6 py-3">
+      <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <motion.div
-            className="text-xl font-bold text-zinc-800 dark:text-zinc-200"
+            className="text-xl font-bold text-primary"
             whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
             Joel Ymele Leki
           </motion.div>
-          <div className="flex items-center space-x-4">
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-8">
             <div className="hidden md:flex space-x-6">
               {navItems.map((item, index) => (
                 <motion.button
                   key={item.href}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-zinc-600 dark:text-zinc-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors px-3 py-2 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-700"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  className="text-foreground hover:text-primary transition-colors duration-200 cursor-pointer"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 + 0.3 }}
+                  whileHover={{ y: -2 }}
                 >
                   {item.label}
                 </motion.button>
               ))}
             </div>
 
+            {/* Mobile Menu Button */}
+            <ThemeToggle />
+            <div className="md:hidden flex items-center space-x-2">
+              <ThemeToggle />
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                {isMobileMenuOpen ? <X /> : <Menu />}
+              </Button>
+            </div>
+            {/* </div> */}
+
             {/* Mobile Navigation */}
             <div className="md:hidden">
-              <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                 <SheetTrigger asChild>
                   <Button variant="ghost" size="icon">
                     <Menu className="h-5 w-5" />
@@ -92,12 +113,10 @@ const Navigation: React.FC = () => {
                 </SheetContent>
               </Sheet>
             </div>
-
-            <ThemeToggle />
-          </div>
+          </nav>
         </div>
       </div>
-    </motion.nav>
+    </motion.header>
   );
 };
 

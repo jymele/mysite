@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <>
       <ModalProvider>
-        <main>
+        <main className="pt-16">
           <Navigation />
           <Hero />
           <About />
